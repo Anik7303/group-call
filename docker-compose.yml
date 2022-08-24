@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      network: host
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    environment:
+      HTTPS: true
+      SSL_CRT_FILE: cert.pem
+      SSL_KEY_FILE: key.pem
+    volumes:
+      - /usr/app/node_modules
+      - .:/usr/app:rw
+    command: npm run start
